@@ -13,7 +13,7 @@ export default function Calculator() {
     try {
       const result = eval(input).toString();
       setInput(result);
-      await axios.post("http://172.20.10.3:5000/api/calculations", {
+      await axios.post("/api/calculations", {
         expression: input,
         result
       });
@@ -24,7 +24,7 @@ export default function Calculator() {
   };
 
   const getHistory = async () => {
-    const res = await axios.get("http://172.20.10.3:5000/api/calculations");
+    const res = await axios.get("/api/calculations");
     setHistory(res.data);
   };
 
