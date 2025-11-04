@@ -22,11 +22,16 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log(err));
 
-// === 1. DEFINE API ROUTES FIRST 
+// =========================================================
+// === 1. DEFINE API ROUTES FIRST ==========================
+// =========================================================
 app.use("/api/calculations", calcRoutes);
 
 
+// =========================================================
 // === 2. SERVE REACT APP (The "catch-all" handler) ========
+// === THIS MUST BE LAST, AFTER ALL API ROUTES ============
+// =========================================================
 if (process.env.NODE_ENV === "production") {
   // Serve the static files from the React app
   app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
@@ -37,6 +42,8 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+// =========================================================
 // === 3. START THE SERVER =================================
+// =========================================================
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, "0.0.0.0", () => console.log(`Server running on port ${PORT}`));
